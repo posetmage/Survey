@@ -4,11 +4,10 @@ layout: page
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/survey-jquery"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <link href="https://unpkg.com/survey-jquery/survey.css" type="text/css" rel="stylesheet" />
 
 <div id="surveys">
-    {{ content | markdownify }}
+    {{ content }}
 </div>
 
 <div id="surveyResult"></div>
@@ -29,49 +28,40 @@ layout: page
 
         var sections = Array.from(element.children);
         sections.forEach(section => {
-            var markdown = section.innerHTML.trim();
-            var html = marked(markdown); // Convert Markdown to HTML using the 'marked' library or your preferred Markdown parser
-
             if (section.className === 'checkbox') {
-                json.questions.push(parseCheckboxSection(html));
+                json.questions.push(parseCheckboxSection(section));
             } else if (section.className === 'choice') {
-                json.questions.push(parseChoiceSection(html));
+                json.questions.push(parseChoiceSection(section));
             } else if (section.className === 'text') {
-                json.questions.push(parseTextSection(html));
+                json.questions.push(parseTextSection(section));
             }
         });
 
         return json;
     }
 
-    function parseCheckboxSection(html) {
-        var tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        var options = Array.from(tempDiv.querySelectorAll('li')).map(li => li.textContent);
+    function parseCheckboxSection(section) {
+        var options = Array.from(section.querySelectorAll('li')).map(li => li.textContent);
         return {
             type: "checkbox",
-            name: tempDiv.querySelector('h2').textContent,
+            name: section.querySelector('h2').textContent,
             choices: options
         };
     }
 
-    function parseChoiceSection(html) {
-        var tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        var options = Array.from(tempDiv.querySelectorAll('li')).map(li => li.textContent);
+    function parseChoiceSection(section) {
+        var options = Array.from(section.querySelectorAll('li')).map(li => li.textContent);
         return {
             type: "radiogroup",
-            name: tempDiv.querySelector('h2').textContent,
+            name: section.querySelector('h2').textContent,
             choices: options
         };
     }
 
-    function parseTextSection(html) {
-        var tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
+    function parseTextSection(section) {
         return {
             type: "comment",
-            name: tempDiv.querySelector('h2').textContent
+            name: section.querySelector('h2').textContent
         };
     }
 </script>
