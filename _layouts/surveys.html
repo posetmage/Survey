@@ -13,6 +13,7 @@ layout: page
 <div id="surveyResult"></div>
 <div id="sendJsonTo"></div>
 
+<input type="text" id="sendText" placeholder="Enter String">
 <input type="text" id="documentId" placeholder="Enter Document ID">
 <button onclick="triggerLambda()">Send Hello World to Lambda</button>
 
@@ -75,11 +76,16 @@ layout: page
     // }
 
     function triggerLambda() {
+        var textInput = document.getElementById('sendText').value;
+        var documentIdInput = document.getElementById('documentId').value;
+        sendToLambda(textInput, documentIdInput);
+    }
+
+    function sendToLambda(text, documentId) {
         const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
-        const documentIdInput = document.getElementById("documentId");
         const data = { 
-            text: 'Hello World from html',
-            document_id: documentIdInput.value,
+            text: text,
+            document_id: documentId,
         };
 
         fetch(url, {
