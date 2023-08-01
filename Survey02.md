@@ -3,29 +3,28 @@ title: 'Survey02'
 layout: surveys
 ---
 
-<div class="checkbox">
-## What are ....
-* A
-* B
-* C
-</div>
+<input type="text" id="documentId" placeholder="Enter Document ID">
+<button onclick="triggerLambda()">Send Hello World to Lambda</button>
 
-<div class="choice">
-## Which one you think
-* X
-* Y
-* Z
-</div>
+<script>
+    function triggerLambda() {
+        const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
+        const documentIdInput = document.getElementById("documentId");
+        const data = { 
+            text: 'Hello World from html',
+            document_id: documentIdInput.value,
+        };
 
-<div class="checkbox">
-## Maybe ....
-* 1
-* 2
-* 3
-</div>
-
-<div class="text">
-## How do you see....
-</div>
-
-<div class="gen_json"></div>
+        fetch(url, {
+            method: 'POST', 
+            body: JSON.stringify(data), 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+          .then(data => console.log(data))
+          .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
