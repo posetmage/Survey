@@ -1,6 +1,6 @@
 # Survey
 
-This is seft-host surveys
+This is seft-host surveys system
 
 
 ## Google API & AWS Lambda
