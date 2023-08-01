@@ -1,6 +1,7 @@
 ---
 layout: page
 ---
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -51,8 +52,14 @@ layout: page
 
 
     survey.onComplete.add(function(result) {
-        document.querySelector('#surveyResult').textContent = "result: " + JSON.stringify(result.data);
-        sendToLambda(JSON.stringify(result.data), document.querySelector('#sendJsonTo').textContent.trim());
+        sendToLambda(JSON.stringify(result.data), document.querySelector('#sendJsonTo').textContent.trim())
+            .then(() => {
+                document.querySelector('#surveyResult').textContent = "Thank you for completing the survey";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.querySelector('#surveyResult').textContent = "There was an error, please try again.";
+            });
     });
 
     $("#surveys").Survey({model:survey});
@@ -98,7 +105,6 @@ layout: page
             name: section.querySelector('h2').textContent
         };
     }
-    
 
     function sendToLambda(text, documentId) {
         const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
@@ -107,16 +113,20 @@ layout: page
             document_id: documentId,
         };
 
-        fetch(url, {
+        return fetch(url, {
             method: 'POST', 
             body: JSON.stringify(data), 
-            headers: {
+            headers:{
                 'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
-          .then(data => console.log(data))
-          .catch((error) => {
-            console.error('Error:', error);
+        }).then(response => {
+            if(response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        }).then(data => {
+            console.log(data);
         });
     }
 </script>
