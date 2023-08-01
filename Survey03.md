@@ -25,4 +25,4 @@ layout: surveys
   <h2>How do you see....</h2>
 </div>
 
-<div id="sendJsonTo" style="display:none;">18zRYh2kOGQ0TUhK9br8qS5rVJMGSHZbSm-aby-l_k-o</div>
+<div id="sendJsonTo">18zRYh2kOGQ0TUhK9br8qS5rVJMGSHZbSm-aby-l_k-o</div>
