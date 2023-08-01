@@ -1,11 +1,14 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Trigger AWS Lambda</title>
     <script>
     function triggerLambda() {
         const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
-        const data = { text: 'Hello World from html' };
+        const documentIdInput = document.getElementById("documentId");
+        const data = { 
+            text: 'Hello World from html',
+            document_id: documentIdInput.value,
+        };
 
         fetch(url, {
             method: 'POST', 
@@ -22,6 +25,7 @@
     </script>
 </head>
 <body>
+    <input type="text" id="documentId" placeholder="Enter Document ID">
     <button onclick="triggerLambda()">Send Hello World to Lambda</button>
 </body>
 </html>
