@@ -1,8 +1,11 @@
 # Survey
 
+This is seft-host survey toolsets
 
-## Google API Enable
 
-https://console.cloud.google.com/apis/library/browse?project=get-survey&q=doc
+## Google API & AWS Lambda
+see [google api](./Google%20API/) to enable apis and get token
 
-## Google API token download
+see [aws lambda](./AWS%20Lambda/) to set and upload code
+
+[gpt chat history](./asw_lambda_google_gpt/chat.html)
