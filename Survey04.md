@@ -6,21 +6,25 @@ layout: page
 <div id="surveys">
 
 <div class="checkbox">
-## What are ....
-* A
-* B
-* C
+<h2>What are ....</h2>
+<ul>
+<li>A</li>
+<li>B</li>
+<li>C</li>
+</ul>
 </div>
 
 <div class="choice">
-## Which one you think
-* X
-* Y
-* Z
+<h2>Which one you think</h2>
+<ul>
+<li>X</li>
+<li>Y</li>
+<li>Z</li>
+</ul>
 </div>
 
 <div class="text">
-## How do you see....
+<h2>How do you see....</h2>
 </div>
 
 </div>
@@ -36,7 +40,7 @@ layout: page
     var survey = new Survey.Model(surveyJson);
 
     survey.onComplete.add(function(result) {
-        document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data, null, 2);
+        document.querySelector('#surveyResult').textContent = "result: " + JSON.stringify(result.data, null, 2);
     });
 
     $("#surveys").Survey({model:survey});
