@@ -19,14 +19,11 @@ layout: page
     var survey = new Survey.Model(surveyJson);
 
     survey.onComplete.add(function(result) {
-        document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
+        document.querySelector('#surveyResult').textContent = "result: " + JSON.stringify(result.data);
         sendToLambda(JSON.stringify(result.data), document.querySelector('#sendJsonTo').textContent.trim());
     });
 
     $("#surveys").Survey({model:survey});
-
-
-
 
     function parseHtmlToSurveyJson(element) {
         var json = { questions: [] };
