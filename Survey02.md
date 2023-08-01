@@ -17,6 +17,13 @@ layout: surveys
 * Z
 </div>
 
+<div class="checkbox">
+## Maybe ....
+* 1
+* 2
+* 3
+</div>
+
 <div class="text">
 ## How do you see....
 </div>

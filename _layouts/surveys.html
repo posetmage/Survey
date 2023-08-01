@@ -4,6 +4,7 @@ layout: page
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/survey-jquery"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <link href="https://unpkg.com/survey-jquery/survey.css" type="text/css" rel="stylesheet" />
 
 <div id="surveys">
@@ -28,12 +29,17 @@ layout: page
 
         var sections = Array.from(element.children);
         sections.forEach(section => {
-            if (section.className === 'checkbox') {
-                json.questions.push(parseCheckboxSection(section));
-            } else if (section.className === 'choice') {
-                json.questions.push(parseChoiceSection(section));
-            } else if (section.className === 'text') {
-                json.questions.push(parseTextSection(section));
+            var markdown = section.innerHTML.trim();
+            var html = marked(markdown); // Convert Markdown to HTML using the 'marked' library or your preferred Markdown parser
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            if (tempDiv.className === 'checkbox') {
+                json.questions.push(parseCheckboxSection(tempDiv));
+            } else if (tempDiv.className === 'choice') {
+                json.questions.push(parseChoiceSection(tempDiv));
+            } else if (tempDiv.className === 'text') {
+                json.questions.push(parseTextSection(tempDiv));
             }
         });
 
