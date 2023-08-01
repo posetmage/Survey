@@ -18,4 +18,5 @@ and copy lambda_function.py, and your google key json to same folder
 zip this folder and upload 
 ![](./lambda_upload_zip.png)
 
-## CORS setting
+## other details
+remember to handle preflight
