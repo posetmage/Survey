@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Survey05</title>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+            }
+
+            button {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>What are good colors?</h1>
+            <form id="survey-form">
+                <label><input type="checkbox" name="color" value="yellow"> Yellow</label>
+                <label><input type="checkbox" name="color" value="red"> Red</label>
+                <label><input type="checkbox" name="color" value="blue"> Blue</label>
+                <label><input type="checkbox" name="color" value="black"> Black</label>
+                <label><input type="checkbox" name="color" value="brown"> Brown</label>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('survey-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const checkedColors = Array.from(document.querySelectorAll('input[name="color"]:checked')).map(checkbox => checkbox.value);
+                alert('Selected colors: ' + checkedColors.join(', '));
+            });
+        </script>
+    </body>
+</html>
+This script creates a survey with a series of checkboxes. When the user submits the form, the script collects all of the checked boxes and shows a dialog box with the selected colors. The preventDefault function is called to prevent the form from being submitted in the traditional way, which would cause the page to refresh.
+
+
+
+
+
