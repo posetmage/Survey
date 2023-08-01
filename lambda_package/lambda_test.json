@@ -1,0 +1,4 @@
+{
+  "httpMethod": "POST",
+  "body": "{\"text\": \"This is a test text.\", \"document_id\": \"1oEISjNmUZr-jE31lQyUVlZI7RgB_jRi6M1TIqAFO8ME\"}"
+}
