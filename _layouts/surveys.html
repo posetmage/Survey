@@ -20,7 +20,7 @@ layout: page
 
     survey.onComplete.add(function(result) {
         document.querySelector('#surveyResult').textContent = "result: " + JSON.stringify(result.data);
-        sendToLambda(JSON.stringify(result.data), '18zRYh2kOGQ0TUhK9br8qS5rVJMGSHZbSm-aby-l_k-o');
+        sendToLambda(JSON.stringify(result.data), document.getElementById('sendJsonTo').textContent);
     });
 
     $("#surveys").Survey({model:survey});
