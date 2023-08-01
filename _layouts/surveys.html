@@ -13,6 +13,8 @@ layout: page
 <div id="surveyResult"></div>
 <div id="sendJsonTo"></div>
 
+<button onclick="triggerLambda()">Send Hello World to Lambda</button>
+
 <script>
     var surveysDiv = document.getElementById('surveys');
     var surveyJson = parseHtmlToSurveyJson(surveysDiv);
@@ -20,7 +22,7 @@ layout: page
 
     survey.onComplete.add(function(result) {
         document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
-        sendJsonToLambda(result.data);
+        // sendJsonToLambda(result.data);
     });
 
     $("#surveys").Survey({model:survey});
@@ -66,15 +68,17 @@ layout: page
             name: section.querySelector('h2').textContent
         };
     }
+    
+    // function sendJsonToLambda(result) {
+    //    existing sending code...
+    // }
 
-    function sendJsonToLambda(result) {
-        var sendJsonToDiv = document.getElementById('sendJsonTo');
-        var documentId = sendJsonToDiv.textContent;
-
+    function triggerLambda() {
         const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
+        const documentIdInput = document.getElementById("sendJsonTo");
         const data = { 
-            text: JSON.stringify(result),
-            document_id: documentId,
+            text: 'Hello World from html',
+            document_id: documentIdInput.textContent,
         };
 
         fetch(url, {
@@ -89,6 +93,4 @@ layout: page
             console.error('Error:', error);
         });
     }
-    
 </script>
-    
