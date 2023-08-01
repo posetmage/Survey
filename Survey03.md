@@ -29,9 +29,10 @@ layout: surveys
 
 ## send to 
 
-<input type="text" id="documentId" placeholder="Enter Document ID">
-<button onclick="triggerLambda()">Send Hello World to Lambda</button>
-
+<body>
+  <input type="text" id="documentId" placeholder="Enter Document ID">
+  <button onclick="triggerLambda()">Send Hello World to Lambda</button>
+</body>
 
 <script>
     function triggerLambda() {
