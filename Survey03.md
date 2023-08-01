@@ -1,6 +1,7 @@
 ---
 title: 'Survey03'
 layout: surveys
+sendJsonTo: '18zRYh2kOGQ0TUhK9br8qS5rVJMGSHZbSm-aby-l_k-o'
 ---
 
 <div class="checkbox">
@@ -24,5 +25,3 @@ layout: surveys
 <div class="text">
   <h2>How do you see....</h2>
 </div>
-
-<div id="sendJsonTo">18zRYh2kOGQ0TUhK9br8qS5rVJMGSHZbSm-aby-l_k-o</div>
