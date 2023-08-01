@@ -3,11 +3,21 @@ layout: page
 ---
 
 <style>
+    .sv_main.sv_bootstrap_css {
+        max-width: 100%;
+    }
+
+    .sv_main .sv_row {
+        flex-wrap: wrap;
+    }
+
     @media only screen and (max-width: 600px) {
-        #surveys {
-            width: 100%;
-            padding: 0;
-            margin: 0;
+        .sv_main .sv_row .sv_qstn {
+            width: 100% !important;
+        }
+
+        .sv_main .sv_row .sv_p_container {
+            width: 100% !important;
         }
     }
 </style>
