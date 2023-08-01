@@ -1,6 +1,6 @@
 ---
 title: 'Survey02'
-layout: default
+layout: survey2
 ---
 
 <div class="checkbox">

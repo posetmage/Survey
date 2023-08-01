@@ -1,6 +1,6 @@
 ---
 title: 'Survey03'
-layout: page
+layout: survey3
 ---
 
 <div class="checkbox">
