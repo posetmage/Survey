@@ -3,22 +3,21 @@ layout: page
 ---
 
 <style>
-    .sv_main.sv_bootstrap_css {
+    .wrapper .sv_main {
         max-width: 100%;
     }
 
-    .sv_main .sv_row {
+    .wrapper .sv_main .sv_row {
         flex-wrap: wrap;
     }
 
-    @media only screen and (max-width: 600px) {
-        .sv_main .sv_row .sv_qstn {
-            width: 100% !important;
-        }
+    .wrapper .sv_main .sv_qstn {
+        width: auto !important;
+        flex: 1 0 auto;
+    }
 
-        .sv_main .sv_row .sv_p_container {
-            width: 100% !important;
-        }
+    .wrapper .sv_main .sv_p_container {
+        width: auto !important;
     }
 </style>
 
@@ -26,8 +25,10 @@ layout: page
 <script src="https://unpkg.com/survey-jquery"></script>
 <link href="https://unpkg.com/survey-jquery/survey.css" type="text/css" rel="stylesheet" />
 
-<div id="surveys">
-    {{ content | markdownify }}
+<div class="wrapper">
+    <div id="surveys">
+        {{ content | markdownify }}
+    </div>
 </div>
 
 <div id="surveyResult"></div>
@@ -38,6 +39,13 @@ layout: page
     var surveysDiv = document.getElementById('surveys');
     var surveyJson = parseHtmlToSurveyJson(surveysDiv);
     var survey = new Survey.Model(surveyJson);
+
+    if(window.innerWidth <= 600) {
+        survey.renderMode = "singlePage";
+    } else {
+        survey.renderMode = "standard";
+    }
+
 
     survey.onComplete.add(function(result) {
         document.querySelector('#surveyResult').textContent = "result: " + JSON.stringify(result.data);
