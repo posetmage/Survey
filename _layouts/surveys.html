@@ -65,6 +65,7 @@ layout: page
             type: "comment",
             name: section.querySelector('h2').textContent
         };
+    }
 
     function sendJsonToLambda(result) {
         var sendJsonToDiv = document.getElementById('sendJsonTo');
@@ -88,6 +89,6 @@ layout: page
             console.error('Error:', error);
         });
     }
-    }
+    
 </script>
     
