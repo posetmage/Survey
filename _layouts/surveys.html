@@ -11,7 +11,6 @@ layout: page
 </div>
 
 <div id="surveyResult"></div>
-<div id="sendJsonTo"></div>
 
 <script>
     var surveysDiv = document.getElementById('surveys');
@@ -20,7 +19,6 @@ layout: page
 
     survey.onComplete.add(function(result) {
         document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
-        sendJsonToLambda(result.data);
     });
 
     $("#surveys").Survey({model:survey});
@@ -66,29 +64,4 @@ layout: page
             name: section.querySelector('h2').textContent
         };
     }
-
-    function sendJsonToLambda(result) {
-        var sendJsonToDiv = document.getElementById('sendJsonTo');
-        var documentId = sendJsonToDiv.textContent;
-
-        const url = 'https://v2uh2lpxh3.execute-api.ap-southeast-2.amazonaws.com/default/SendSurvey';
-        const data = { 
-            survey_result: result,
-            document_id: documentId,
-        };
-
-        fetch(url, {
-            method: 'POST', 
-            body: JSON.stringify(data), 
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-          .then(data => console.log(data))
-          .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-    
 </script>
-    
