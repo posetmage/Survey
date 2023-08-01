@@ -1,12 +1,9 @@
----
-layout: page
----
 
 <script src="https://unpkg.com/survey-jquery"></script>
 <link href="https://unpkg.com/survey-jquery/survey.css" type="text/css" rel="stylesheet" />
 
-<div id="surveys">
-    {{ content }}
+<div id="survey">
+    {{ content | markdownify }}
 </div>
 
 <div id="surveyResult"></div>
