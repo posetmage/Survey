@@ -42,9 +42,7 @@ def lambda_handler(event, context):
             'body': 'preflight successful'
         }
 
-    document_id = '1oEISjNmUZr-jE31lQyUVlZI7RgB_jRi6M1TIqAFO8ME'
-    
-    # Check if 'body' is in the event and try to extract 'text'
+    # Check if 'body' is in the event and try to extract 'text' and 'document_id'
     if 'body' not in event:
         print("No 'body' in event")
         return {
@@ -54,15 +52,16 @@ def lambda_handler(event, context):
         }
     else:
         body = json.loads(event['body'])
-        if 'text' not in body:
-            print("No 'text' in body")
+        if 'text' not in body or 'document_id' not in body:
+            print("No 'text' or 'document_id' in body")
             return {
                 'statusCode': 400,
                 'headers': headers,
-                'body': json.dumps('No text provided in the request body')
+                'body': json.dumps('No text or document_id provided in the request body')
             }
         else:
             text_to_append = body['text']
+            document_id = body['document_id']
             loop = asyncio.get_event_loop()
             loop.run_until_complete(append_text_async(document_id, text_to_append))
 
