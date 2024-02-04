@@ -1,6 +1,11 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs
 /lambda_package
+
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+/.vs
+
+.png
+Gemfile.lock

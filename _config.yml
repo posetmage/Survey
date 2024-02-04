@@ -18,12 +18,19 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: PosetMage Survey System
+title: PosetMage
 email: mail@posetmage.com
-description: >- # this means to ignore newlines until "baseurl:"
-   Survery System
-baseurl: "/Survey/" # the subpath of your site, e.g. /blog
-url: "https://posetmage.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: https://posetmage.com # the base hostname & protocol for your site, e.g. http://example.com
+repository: posetmage/Survey
+baseurl: /Survey # the subpath of your site, e.g. /blog
+description: Survey
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
 
 social:
   - platform: envelope
@@ -36,8 +43,6 @@ social:
     url: https://facebook.com/posetmage
   - platform: twitter
     url: https://twitter.com/posetmage
-  - platform: discord
-    url: https://discord.gg/e9Pxe4qMjV
   - platform: line
     url: https://line.me/ti/p/Out6J_7uOq
   - platform: telegram
@@ -45,10 +50,6 @@ social:
   - platform: twitch
     url: https://twitch.tv/posetmage
 
-
-#order
-header_pages:
-  - Contact.md
 # Build settings
 remote_theme: jekyll/minima
 
@@ -57,16 +58,14 @@ minima:
 
 plugins:
   - jekyll-external-links
+  - jekyll-feed
   - jekyll-redirect-from
   - jekyll-category-pages
   - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-titles-from-headings
+  - jekyll-seo-tag
 
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      layout: "page"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
